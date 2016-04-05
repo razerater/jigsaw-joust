@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/index.css">
+		<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+	</head>
+	<body>
+		<noscript>
+			Your browser does not support JavaScript.
+		</noscript>
+		<div>
+			<h1>
+			Jigsaw Joust
+			</h1>
+		</div>
+		<nav>
+
+		</nav>
+		<p>
+			<!-- <pre>&#9;</pre> -->This is a simple jigsaw puzzle; click and drag pieces to move them around. This version is just a demo as I haven't yet added the clock or leaderboard for best solving times. Enjoy!
+		</p>
+		<div id="start" onclick="makePuzzle(); startTimer()">
+			START
+		</div>
+		<div id="gameover">
+			You win! Your time was: (not available yet)
+			<br>
+			<button onclick="getNextPuzzle()">Play again</button>
+		</div>
+		<script src="js/index.js"></script>
+		<script src="js/firebase.js"></script>
+	</body>
+</html>
