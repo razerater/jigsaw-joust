@@ -3,13 +3,13 @@ var currentPuzzleNum = 0;
 var numMoves = 0;
 
 puzzles[0] = {
-	numPieces : 4,
-	numRows : 2
+	numPieces: 4,
+	numRows: 2
 }
 
 puzzles[1] = {
-	numPieces : 24,
-	numRows : 6
+	numPieces: 24,
+	numRows: 6
 }
 
 for(var i = 0; i < puzzles.length; i++) {
@@ -19,26 +19,25 @@ for(var i = 0; i < puzzles.length; i++) {
 var currentPuzzle = puzzles[currentPuzzleNum];
 
 function makePuzzle() {
+	document.getElementById("start").removeAttribute("onclick");
 	document.getElementById("gameover").style.display = "none";
 	if(document.getElementById("game")) {
 		document.getElementById("game").parentNode.removeChild(document.getElementById("game"));
 	}
 	game = document.createElement("table");
-	document.body.appendChild(game);
+	document.body.insertBefore(game, document.getElementById("gameover"));
 	game.id = "game";
 
-	startTimer();
-
 	var availablePieces = [];
-	for(var i = 0; i < currentPuzzle.numPieces; i++) {
+	for(let i = 0; i < currentPuzzle.numPieces; i++) {
 		availablePieces.push(i);
 	}
 
-	for(var i = 0; i < currentPuzzle.numRows; i++) {
+	for(let i = 0; i < currentPuzzle.numRows; i++) {
 		var rowPieces = document.createElement("tr");
 		game.appendChild(rowPieces);
 
-		for(var j = 0; j < currentPuzzle.numCols; j++) {
+		for(let j = 0; j < currentPuzzle.numCols; j++) {
 			var puzzlePieceContainer = document.createElement("td");
 			rowPieces.appendChild(puzzlePieceContainer);
 			puzzlePieceContainer.id = "pieceholder" + (i * currentPuzzle.numCols + j);
@@ -68,15 +67,12 @@ function makePuzzle() {
 				event.currentTarget.appendChild(draggedPiece);
 				numMoves++;
 				if(gameOver()) {
-					for(var k = 0; k < currentPuzzle.numPieces; k++) {
+					for(let k = 0; k < currentPuzzle.numPieces; k++) {
 						document.getElementById("piece" + k).draggable = false;
 					}
 					clearInterval(timerInterval);
-					if(timerInterval) {
-						console.log("hi");
-					}
-					document.getElementById("start").removeAttribute("onclick");
-					document.getElementById("start").removeAttribute("style");
+					let playagain = document.createTextNode("You win! Your time was: " + document.getElementById("start").textContent);
+					document.getElementById("gameover").insertBefore(playagain, document.getElementById("gameover").querySelector("br"));
 					setTimeout(function() {
 						document.getElementById("game").parentNode.removeChild(document.getElementById("game"));
 						document.getElementById("gameover").style.display = "block";
@@ -90,7 +86,7 @@ function makePuzzle() {
 function startTimer() {
 	var timerElem = document.getElementById("start");
 	var startTime = Date.now();
-	function timer() {
+	timer = function() {
 		var currentTime = Date.now() - startTime;
 		var seconds = parseInt(currentTime / 1000);
 		var minutes = parseInt(seconds / 60);
