@@ -6,7 +6,6 @@ puzzles[0] = {
 	numPieces: 4,
 	numRows: 2
 }
-
 puzzles[1] = {
 	numPieces: 24,
 	numRows: 6
@@ -67,16 +66,15 @@ function makePuzzle() {
 				event.currentTarget.appendChild(draggedPiece);
 				numMoves++;
 				if(gameOver()) {
+					clearInterval(timerInterval);
+					document.getElementById("playagain").textContent = "You win! Your time was: " + document.getElementById("start").textContent;
 					for(let k = 0; k < currentPuzzle.numPieces; k++) {
 						document.getElementById("piece" + k).draggable = false;
 					}
-					clearInterval(timerInterval);
-					let playagain = document.createTextNode("You win! Your time was: " + document.getElementById("start").textContent);
-					document.getElementById("gameover").insertBefore(playagain, document.getElementById("gameover").querySelector("br"));
 					setTimeout(function() {
 						document.getElementById("game").parentNode.removeChild(document.getElementById("game"));
 						document.getElementById("gameover").style.display = "block";
-					}, 1500);
+					}, 2000);
 				}
 			});
 		}
@@ -86,7 +84,7 @@ function makePuzzle() {
 function startTimer() {
 	var timerElem = document.getElementById("start");
 	var startTime = Date.now();
-	timer = function() {
+	var timer = function() {
 		var currentTime = Date.now() - startTime;
 		var seconds = parseInt(currentTime / 1000);
 		var minutes = parseInt(seconds / 60);
@@ -110,6 +108,7 @@ function gameOver() {
 }
 
 function getNextPuzzle() {
-	currentPuzzle = puzzles[++currentPuzzleNum % puzzles.length];
+	currentPuzzleNum++;
+	currentPuzzle = puzzles[currentPuzzleNum %= puzzles.length];
 	makePuzzle();
 }

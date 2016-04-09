@@ -13,14 +13,14 @@
 			Jigsaw Joust
 		</h1>
 		<p>
-			<!-- <pre>&#9;</pre> -->This is a simple jigsaw puzzle; click and drag pieces to move them around. This version is just a demo as I haven't yet added the clock or leaderboard for best solving times. Enjoy!
+			<!-- <pre>&#9;</pre> -->A simple jigsaw puzzle game; click and drag pieces to move them around. This version is just a demo as I haven't yet added more puzzles or a leaderboard for the top solving times. Enjoy!
 		</p>
 		<div id="start" onclick="makePuzzle(); startTimer();">
 			START
 		</div>
 		<div id="gameover">
-			<br>
-			<button onclick="getNextPuzzle(); startTimer();">Play again</button>
+			<p id="playagain"></p>
+			<button onclick="getNextPuzzle(); startTimer();">Play another</button>
 		</div>
 		<script src="js/index.js"></script>
 		<script src="js/firebase.js"></script>
