@@ -1,6 +1,6 @@
 var firebase = new Firebase("https://glaring-heat-7005.firebaseio.com/");
 
-document.getElementById("start").addEventListener("onclick", function(event) {
+document.getElementById("start").addEventListener("click", function(event) {
 	firebase.authWithOAuthPopup("google", function(error, authData) {
 		if(error) {
 			// error is null if there is no error
