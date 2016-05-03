@@ -1,4 +1,5 @@
-var puzzles = new Array(2);
+var numPuzzles = 2;
+var puzzles = new Array(numPuzzles);
 var currentPuzzleNum = 0;
 var numMoves = 0;
 
@@ -11,14 +12,13 @@ puzzles[1] = {
 	numRows: 6
 }
 
-for(var i = 0; i < puzzles.length; i++) {
+for(let i = 0; i < numPuzzles; i++) {
 	puzzles[i].numCols = puzzles[i].numPieces/puzzles[i].numRows;
 }
 
 var currentPuzzle = puzzles[currentPuzzleNum];
 
 function makePuzzle() {
-	document.getElementById("start").removeAttribute("onclick");
 	document.getElementById("gameover").style.display = "none";
 	if(document.getElementById("game")) {
 		document.getElementById("game").parentNode.removeChild(document.getElementById("game"));
@@ -71,6 +71,7 @@ function makePuzzle() {
 					for(let k = 0; k < currentPuzzle.numPieces; k++) {
 						document.getElementById("piece" + k).draggable = false;
 					}
+					logScore();
 					setTimeout(function() {
 						document.getElementById("game").parentNode.removeChild(document.getElementById("game"));
 						document.getElementById("gameover").style.display = "block";
@@ -86,7 +87,7 @@ function startTimer() {
 	var startTime = Date.now();
 	var timer = function() {
 		var currentTime = Date.now() - startTime;
-		var seconds = parseInt(currentTime / 1000);
+		seconds = parseInt(currentTime / 1000);
 		var minutes = parseInt(seconds / 60);
 		timerElem.textContent = (minutes < 10 ? "0" : "") + minutes + ":" + (seconds % 60 < 10 ? "0" : "") + seconds % 60;
 	}
@@ -96,10 +97,10 @@ function startTimer() {
 }
 
 function gameOver() {
-	return Array.prototype.slice.call(document.getElementsByTagName("td")).every(function(element, index) {
+	return Array.from(document.getElementsByTagName("td")).every(function(element, index) {
 		return element.firstChild.id == "piece" + index;
 	});
-	/*var arrayElems = Array.prototype.slice.call(document.getElementsByTagName("td"));
+	/*var arrayElems = Array.from(document.getElementsByTagName("td"));
 	var correctElems = arrayElems.filter(function(element, index) {
 		return element.firstChild.id == "piece" + index;
 	});
@@ -109,6 +110,6 @@ function gameOver() {
 
 function getNextPuzzle() {
 	currentPuzzleNum++;
-	currentPuzzle = puzzles[currentPuzzleNum %= puzzles.length];
+	currentPuzzle = puzzles[currentPuzzleNum %= numPuzzles];
 	makePuzzle();
 }
