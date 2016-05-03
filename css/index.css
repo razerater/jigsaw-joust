@@ -1,13 +1,32 @@
-body * {
+* {
 	font-family: Courier;
 }
+.noselect {
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+#title {
+	display: inline-block;
+	width: 70%;
+}
 h1 {
+	padding-left: 60px;
+}
+h3 {
+	cursor: pointer;
+}
+#login {
+	display: inline-block;
 	text-align: center;
+	vertical-align: 5px;
+	width: 29%;
 }
 p {
 	margin: 0px 30px 20px 30px;
 }
-div#start {
+#start {
 	margin: 0px 40% 40px 40%;
 	font-size: 2em;
 	text-align: center;
@@ -15,13 +34,22 @@ div#start {
 	border: 2px dashed black;
 	cursor: pointer;
 }
-div#start::selection {
-	cursor: pointer;
-}
 #game {
 	border: 1px solid darkgray;
 	border-spacing: 1px;
 	margin: 10px auto 0px auto;
+}
+#leaderboard {
+	position: absolute;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 8px;
+	right: 30px;
+	top: 230px;
+	border: 1px solid darkgray;
+}
+li {
+	margin-top: 5px;
 }
 #gameover {
 	display: none;

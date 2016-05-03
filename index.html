@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 	<head>
 		<meta charset="UTF-8">
 		<title>Jigsaw Joust</title>
@@ -10,18 +10,37 @@
 		<noscript>
 			Your browser does not support JavaScript.
 		</noscript>
-		<h1>
-			Jigsaw Joust
-		</h1>
+		<div id="title">
+			<h1>
+				Jigsaw Joust
+			</h1>
+		</div>
+		<div id="login">
+			<h3 class="noselect">
+				Login with Google
+			</h3>
+		</div>
+		<br>
 		<p>
-			<!-- <pre>&#9;</pre> -->A simple jigsaw puzzle game; click and drag pieces to move them around. This version is just a demo as I haven't yet added more puzzles or a leaderboard for the top solving times. Enjoy!
+			A simple jigsaw puzzle game; click and drag pieces to move them around. Try to beat the best time for each puzzle!
 		</p>
-		<div id="start">
+		<div id="start" class="noselect">
 			START
 		</div>
+		<ol id="leaderboard">
+			Best times:
+			<br>
+			<li id="score0"></li>
+			<li id="score1"></li>
+			<li id="score2"></li>
+			<li id="score3"></li>
+			<li id="score4"></li>
+		</ol>
 		<div id="gameover">
 			<p id="playagain"></p>
-			<button onclick="getNextPuzzle(); startTimer();">Play another</button>
+			<button id="playanother">
+				Play another
+			</button>
 		</div>
 		<script src="js/index.js"></script>
 		<script src="js/firebase.js"></script>
